@@ -27,7 +27,6 @@ Ouvrez votre terminal (ou invite de commande) dans le dossier de votre projet.
 
 Écrivez la commande suivante dans le terminal : `npm start`
 
-L'utilisateur `plusieursvm` mdp : `plusieursvm`  ||  peut créer plusieurs VM. Cependant chaque VM sera supprimé au bout de 10 minutes.
+L'utilisateur `plusieursvm` mdp : `plusieursvm` || peut créer plusieurs VM. Cependant chaque VM sera supprimé au bout de 10 minutes.
 
 # VMCloud 👀
-# VMCloud

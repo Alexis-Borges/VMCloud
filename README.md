@@ -2,6 +2,8 @@
 
 Node.js v16.10.0
 
+Requis
+
 # 1ere étape
 
 `npm i` `npm install` dans la console.
@@ -25,6 +27,6 @@ Ouvrez votre terminal (ou invite de commande) dans le dossier de votre projet.
 
 Écrivez la commande suivante dans le terminal : `npm start`
 
-L'utilisateur `plusieursvm` peut créer plusieurs VM. Cependant chaque VM sera supprimé au bout de 10min.
+L'utilisateur `plusieursvm` mdp : `plusieursvm`  ||  peut créer plusieurs VM. Cependant chaque VM sera supprimé au bout de 10 minutes.
 
 # VMCloud 👀

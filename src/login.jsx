@@ -1,94 +1,169 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, Input, message, Typography, Space, Spin } from "antd";
-import Users from "./public/users.json";
-import VM from "./components/VM";
-
-const { Title } = Typography;
+import { Button, Form, Input, message, Spin } from "antd";
+import UsersData from "./public/utilisateurs.json";
+import VirtualMachines from "./components/VirtualMachines";
 
 const Login = () => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const userLogged = JSON.parse(sessionStorage.getItem("user"));
     if (userLogged) {
-      setIsAuth(true);
+      setIsLoggedIn(true);
     }
     setIsLoading(false);
   }, []);
 
-  const onFinish = (values) => {
-    const user = Users.find(
+  const onConnexion = (values) => {
+    const user = UsersData.find(
       (user) =>
         user.username === values.username && user.password === values.password
     );
     if (!user) {
       message.error("Invalid username or password");
     } else {
-      setIsAuth(true);
+      setIsLoggedIn(true);
       sessionStorage.setItem("user", JSON.stringify(user));
     }
   };
-
-  const onFinishFailed = (errorInfo) => {
+  if (isLoggedIn) {
+    return <VirtualMachines />;
+  }
+  const onConnexionFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   if (isLoading) {
-    return <Spin />;
-  }
-
-  if (isAuth) {
-    return <VM />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <Spin />
+      </div>
+    );
   }
 
   return (
-    <Space direction="vertical">
-      <Title level={2}>Cloud VM Dylan</Title>
-      <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+        backgroundColor: "#f3f4f6",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          maxWidth: "400px",
+          padding: "40px",
+          backgroundColor: "#ffffff",
+          borderRadius: "8px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
       >
-        <Form.Item
-          label="Username"
-          name="username"
-          initialValue={"plusieursvm"}
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
+        <img
+          className="mx-auto"
+          src="/logo512.png"
+          alt="Your Company"
+          style={{
+            width: "100px",
+            height: "auto",
+            marginBottom: "20px",
+            paddingRight: "15%",
+          }}
+        />
+        <Form
+          style={{ maxWidth: "600px" }}
+          name="basic"
+          autoComplete="off"
+          onFinish={onConnexion}
+          onFinishFailed={onConnexionFailed}
         >
-          <Input />
-        </Form.Item>
+          <div style={{ marginBottom: "16px" }}>
+            <Form.Item
+              label="Nom d'utilisateur"
+              name="username"
+              initialValue="plusieursvm"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your username!",
+                },
+              ]}
+            >
+              <Input
+                style={{
+                  width: "100%",
+                  padding: "8px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "8px",
+                  outline: "none",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                  color: "#374151",
+                }}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          initialValue={"plusieursvm"}
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+          <div style={{ marginBottom: "16px" }}>
+            <Form.Item
+              label="Mot de passe"
+              name="password"
+              initialValue="plusieursvm"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input
+                type="password"
+                style={{
+                  paddingTop: "8px",
+                  width: "100%",
+                  padding: "8px",
+                  border: "1px solid #d1d5db",
+                  borderRadius: "8px",
+                  outline: "none",
+                  boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                  color: "#374151",
+                }}
+              />
+            </Form.Item>
+          </div>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </Space>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{
+                backgroundColor: "#5727db",
+                color: "#ffffff",
+                fontWeight: "bold",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                outline: "none",
+                cursor: "pointer",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              Login
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </div>
   );
 };
 

@@ -34,7 +34,7 @@ const createVmFunction = async (reqBody) => {
   const offer = reqBody.offer || "UbuntuServer";
   const sku = reqBody.sku || "18.04-LTS";
   const adminUsername = "VMCloudAdmin";
-  const adminPassword = makePassword(15);
+  const adminPassword = CreatePassword(15);
 
   // Azure platform authentication
   const clientId = process.env["AZURE_CLIENT_ID"];
@@ -67,7 +67,6 @@ const createVmFunction = async (reqBody) => {
 
   let authResult = null;
 
-  // Create resources then manage them (on/off)
   const createVm = async () => {
     try {
       await createResources();
@@ -76,7 +75,7 @@ const createVmFunction = async (reqBody) => {
       console.log("VM will be deleted: " + deleteDate);
       setTimeout(() => {
         deleteResourceGroup();
-      }, 600000); // 600000 Delete resource group after 10 minutes
+      }, 600000);
       return {
         ip: authResult.ip,
         username: authResult.username,
@@ -88,7 +87,7 @@ const createVmFunction = async (reqBody) => {
     }
   };
 
-  function makePassword(length) {
+  function CreatePassword(length) {
     const complexityRequirements = [
       /[A-Z]/, // Uppercase character
       /[a-z]/, // Lowercase character

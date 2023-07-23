@@ -33,11 +33,11 @@ const resourceClient = new ResourceManagementClient(
 const main = async () => {
   try {
     console.log(
-      "Deleting the resource group can take few minutes, so please be patient :)."
+      "Deleting the vm can be long."
     );
 
     await deleteResourceGroup();
-    console.log("Successfully deleted the resourcegroup: " + resourceGroupName);
+    console.log("deleted Successfully " + resourceGroupName);
   } catch (err) {
     console.log(err);
   }

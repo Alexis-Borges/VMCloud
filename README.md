@@ -1,4 +1,4 @@
-# Cloud VM Dylan
+# VMCloud Alexis
 
 # Requis
 
@@ -38,4 +38,5 @@ L'utilisateur `userNoCredit` n'a pas de crédit et ne peut donc pas créer de VM
 L'utilisateur `userOneVM` peut créer une VM. Donc lorsque la VM est créee, il doit attendre 10min avant de pouvoir en créer une autre. Lorsqu'il sera sur la page des informations de la VM, au bout de 10min la page s'actualisera automatiquement pour afficher la page de création de VM.
 
 L'utilisateur `userManyVM` peut créer plusieurs VM. Lorsqu'il sera sur la page d'informations de la VM, il aura un bouton pour créer une nouvelle VM. Chaque VM sera supprimé au bout de 10min. **IL EST LIMITÉ À 3 VM.**
+
 # VMCloud
